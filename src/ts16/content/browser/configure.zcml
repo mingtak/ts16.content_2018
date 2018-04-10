@@ -18,4 +18,13 @@
       directory="static"
       />
 
+
+  <!-- Browser view -->
+  <browser:page
+      name="cover_view"
+      for="ts16.content.interfaces.ICover"
+      class=".views.CoverView"
+      layer="ts16.content.interfaces.ITs16ContentLayer"
+      permission="zope2.View"
+  />
 </configure>
