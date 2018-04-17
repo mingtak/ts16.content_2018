@@ -2,7 +2,7 @@
 from ts16.content import _
 # from plone.autoform import directives
 #from plone.supermodel import directives
-#from zope import schema
+from zope import schema
 from plone.autoform.interfaces import IFormFieldProvider
 from plone.supermodel import model
 from zope.component import adapts
@@ -26,7 +26,8 @@ class IBigImage(model.Schema):
     model.fieldset(
         'bigImage',
         label=_(u"bigImage"),
-        fields=['bigImage_1', 'bigImage_2', 'bigImage_3','bigImage_4', 'bigImage_5', ]
+        fields=['bigImage_1', 'photoer_1', 'bigImage_2', 'photoer_2', 'bigImage_3', 'photoer_3',
+                'bigImage_4', 'photoer_4', 'bigImage_5', 'photoer_5', ]
     )
 
     bigImage_1 = NamedBlobImage(
@@ -57,7 +58,32 @@ class IBigImage(model.Schema):
         title=_(u"Big Image"),
         description=_(u"Big image for page. Size:1900 X 950"),
         required=False,
-)
+    )
+
+    photoer_1 = schema.TextLine(
+        title=_(u"Photographer"),
+        required=False,
+    )
+
+    photoer_2 = schema.TextLine(
+        title=_(u"Photographer"),
+        required=False,
+    )
+
+    photoer_3 = schema.TextLine(
+        title=_(u"Photographer"),
+        required=False,
+    )
+
+    photoer_4 = schema.TextLine(
+        title=_(u"Photographer"),
+        required=False,
+    )
+
+    photoer_5 = schema.TextLine(
+        title=_(u"Photographer"),
+        required=False,
+    )
 
 
 alsoProvides(IBigImage, IFormFieldProvider)
@@ -86,3 +112,9 @@ class BigImage(object):
     bigImage_3 = context_property("bigImage_3")
     bigImage_4 = context_property("bigImage_4")
     bigImage_5 = context_property("bigImage_5")
+    photoer_1 = context_property("photoer_1")
+    photoer_2 = context_property("photoer_2")
+    photoer_3 = context_property("photoer_3")
+    photoer_4 = context_property("photoer_4")
+    photoer_5 = context_property("photoer_5")
+
