@@ -30,6 +30,11 @@ class IBigImage(model.Schema):
                 'bigImage_4', 'photoer_4', 'bigImage_5', 'photoer_5', ]
     )
 
+    en_title = schema.Text(
+        title=_(u"English Title"),
+        required=False,
+    )
+
     bigImage_1 = NamedBlobImage(
         title=_(u"Big Image"),
         description=_(u"Big image for page. Size:1900 X 950"),
@@ -117,4 +122,4 @@ class BigImage(object):
     photoer_3 = context_property("photoer_3")
     photoer_4 = context_property("photoer_4")
     photoer_5 = context_property("photoer_5")
-
+    en_title = context_property("en_title")
