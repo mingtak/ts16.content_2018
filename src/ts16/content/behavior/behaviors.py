@@ -12,7 +12,7 @@ from zope.interface import provider
 #from plone.app.vocabularies.catalog import CatalogSource
 from plone.dexterity.interfaces import IDexterityContent
 #from plone.directives import dexterity
-#from plone.app.textfield import RichText
+from plone.app.textfield import RichText
 #from plone.app.content.interfaces import INameFromTitle
 from plone.namedfile.field import NamedBlobImage, NamedBlobFile
 #from DateTime import DateTime
@@ -30,8 +30,25 @@ class IBigImage(model.Schema):
                 'bigImage_4', 'photoer_4', 'bigImage_5', 'photoer_5', ]
     )
 
+    model.fieldset(
+        'english',
+        label=_(u"English"),
+        fields=['en_title', 'en_description', 'en_text', ]
+    )
+
     en_title = schema.Text(
         title=_(u"English Title"),
+        required=False,
+    )
+
+    en_description = schema.Text(
+        title=_(u"English Description"),
+        description=u"英文摘要，與中文摘要格式同",
+        required=False,
+    )
+
+    en_text = RichText(
+        title=_(u"English text"),
         required=False,
     )
 
@@ -123,3 +140,5 @@ class BigImage(object):
     photoer_4 = context_property("photoer_4")
     photoer_5 = context_property("photoer_5")
     en_title = context_property("en_title")
+    en_description = context_property("en_description")
+    en_text = context_property("en_text")

@@ -4,6 +4,17 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 
 
+class PostEnView(BrowserView):
+    template = ViewPageTemplateFile('template/post_en_view.pt')
+
+    def __call__(self):
+        portal = api.portal.get()
+        request = self.request
+        postId = request.form.get('id')
+        self.post = portal['zh-tw']['award'][postId]
+        return self.template()
+
+
 class CoverView(BrowserView):
     template_zh = ViewPageTemplateFile('template/cover_view_zh.pt')
     template_en = ViewPageTemplateFile('template/cover_view_en.pt')

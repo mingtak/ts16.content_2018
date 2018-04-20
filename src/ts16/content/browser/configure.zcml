@@ -27,4 +27,13 @@
       layer="ts16.content.interfaces.ITs16ContentLayer"
       permission="zope2.View"
   />
+
+  <browser:page
+      name="post_en_view"
+      for="*"
+      class=".views.PostEnView"
+      layer="ts16.content.interfaces.ITs16ContentLayer"
+      permission="zope2.View"
+  />
+
 </configure>
