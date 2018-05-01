@@ -4,6 +4,25 @@ from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from plone import api
 
 
+class Vote(BrowserView):
+
+    def __call__(self):
+        request = self.request
+        portal = api.portal.get()
+        voteUIDs = request.form.get('vote').split(',')
+        email = request.form.get('email')
+
+        voteObj = portal['vote']
+        if email in voteObj.description.split('\n'):
+            return 'err1'
+        voteObj.description += '\n%s' % email
+
+        for uid in voteUIDs:
+            pollObj = api.content.find(UID=uid)[0].getObject()
+            pollObj.vote += 1
+        return 'ok'
+
+
 class PostEnView(BrowserView):
     template = ViewPageTemplateFile('template/post_en_view.pt')
 

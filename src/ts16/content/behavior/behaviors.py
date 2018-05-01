@@ -36,6 +36,17 @@ class IBigImage(model.Schema):
         fields=['en_title', 'en_description', 'en_text', ]
     )
 
+    model.fieldset(
+        'vote',
+        label=_(u"Vote"),
+        fields=['vote', ]
+    )
+
+    vote = schema.Int(
+        title=_(u"Vote counter"),
+        default=0,
+    )
+
     en_title = schema.Text(
         title=_(u"English Title"),
         required=False,
@@ -142,3 +153,4 @@ class BigImage(object):
     en_title = context_property("en_title")
     en_description = context_property("en_description")
     en_text = context_property("en_text")
+    vote = context_property("vote")
