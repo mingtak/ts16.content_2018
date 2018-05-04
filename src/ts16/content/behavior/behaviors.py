@@ -39,7 +39,17 @@ class IBigImage(model.Schema):
     model.fieldset(
         'vote',
         label=_(u"Vote"),
-        fields=['vote', ]
+        fields=['voteTitle', 'vote', 'voteEmail']
+    )
+
+    voteEmail = schema.Text(
+        title=_(u"Vote Email"),
+        required=False,
+    )
+
+    voteTitle = schema.TextLine(
+        title=_(u"Vote Title"),
+        required=True,
     )
 
     vote = schema.Int(
@@ -154,3 +164,5 @@ class BigImage(object):
     en_description = context_property("en_description")
     en_text = context_property("en_text")
     vote = context_property("vote")
+    voteTitle = context_property("voteTitle")
+    voteEmail = context_property("voteEmail")

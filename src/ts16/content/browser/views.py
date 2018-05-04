@@ -20,6 +20,10 @@ class Vote(BrowserView):
         for uid in voteUIDs:
             pollObj = api.content.find(UID=uid)[0].getObject()
             pollObj.vote += 1
+            if not pollObj.voteEmail:
+                pollObj.voteEmail = email
+            else:
+                pollObj.voteEmail += '\n%s' % email
         return 'ok'
 
 
